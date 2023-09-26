@@ -1,11 +1,11 @@
-const Joi = require("joi")
+const Joi = require('joi')
 
-const { TodoModel, TODO_ENUM } = require("../../schemas/todo.schema")
+const { TodoModel, TODO_ENUM } = require('../../schemas/todo.schema')
 
 /**
- * @param {import("express").Request} req 
- * @param {import("express").Response} res 
- * @param {import("express").NextFunction} next 
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @param {import("express").NextFunction} next
  */
 const updateTodoController = async (req, res, next) => {
     try {
@@ -18,9 +18,15 @@ const updateTodoController = async (req, res, next) => {
         }
 
         if (todo.title !== bodyDto?.title) {
-            const todoTitleUnique = await TodoModel.findOne({ title: bodyDto.title }).lean().exec()
+            const todoTitleUnique = await TodoModel.findOne({
+                title: bodyDto.title,
+            })
+                .lean()
+                .exec()
             if (todoTitleUnique) {
-                return res.status(409).json({ error: 'Todo title already exist' })
+                return res
+                    .status(409)
+                    .json({ error: 'Todo title already exist' })
             }
         }
 
@@ -39,7 +45,10 @@ const paramsDtoSchema = Joi.object({
 const bodyDtoSchema = Joi.object({
     title: Joi.string().optional(),
     description: Joi.string().optional(),
-    status: Joi.string().optional().valid(...TODO_ENUM).optional(),
+    status: Joi.string()
+        .optional()
+        .valid(...TODO_ENUM)
+        .optional(),
 })
 
 module.exports = updateTodoController

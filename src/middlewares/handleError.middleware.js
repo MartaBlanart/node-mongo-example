@@ -1,8 +1,8 @@
 /**
- * @param {import("express").ErrorRequestHandler} error 
- * @param {import("express").Request} _req 
- * @param {import("express").Response} res 
- * @param {import("express").NextFunction} _next 
+ * @param {import("express").ErrorRequestHandler} error
+ * @param {import("express").Request} _req
+ * @param {import("express").Response} res
+ * @param {import("express").NextFunction} _next
  */
 const handleMiddlewareError = (error, _req, res, _next) => {
     const { name, message, stack } = error

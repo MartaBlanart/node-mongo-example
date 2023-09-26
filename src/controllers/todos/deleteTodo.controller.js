@@ -1,11 +1,11 @@
-const Joi = require("joi")
+const Joi = require('joi')
 
-const { TodoModel, TODO_ENUM } = require("../../schemas/todo.schema")
+const { TodoModel } = require('../../schemas/todo.schema')
 
 /**
- * @param {import("express").Request} req 
- * @param {import("express").Response} res 
- * @param {import("express").NextFunction} next 
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @param {import("express").NextFunction} next
  */
 const deleteTodoController = async (req, res, next) => {
     try {

@@ -1,9 +1,9 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
 const TODO_STATUS = {
-    COMPLETE: "complete",
-    PENDING: "pending",
-    CANCEL: "cancel",
+    COMPLETE: 'complete',
+    PENDING: 'pending',
+    CANCEL: 'cancel',
 }
 
 const TODO_ENUM = Object.values(TODO_STATUS)
@@ -16,7 +16,7 @@ const TodoSchema = new mongoose.Schema({
     updatedAt: { type: Date, default: Date.now },
 })
 
-const TodoModel = mongoose.model("Todo", TodoSchema)
+const TodoModel = mongoose.model('Todo', TodoSchema)
 
 module.exports = {
     TodoSchema,
