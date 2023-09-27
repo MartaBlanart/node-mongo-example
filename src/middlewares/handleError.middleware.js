@@ -16,4 +16,4 @@ const handleMiddlewareError = (error, _req, res, _next) => {
     return res.status(500).send({ error: 'Internal Server Error' })
 }
 
-module.exports = handleMiddlewareError
+export default handleMiddlewareError

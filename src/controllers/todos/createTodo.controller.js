@@ -17,16 +17,16 @@ const { TodoModel, TODO_ENUM } = require('../../schemas/todo.schema')
       status: controlar los estados de la petición
          * 
          */
-const createTodoController = async (req, res, next) => {
+const createCommentController = async (req, res, next) => {
     try {
-        const bodyDto = await bodyDtoSchema.validateAsync(req.body)
+        const comment = await commentSchema.validateAsync(req.body)
 
         const todoTitleUnique = await TodoModel.findOne({
-            title: bodyDto.title,
+            title: comment.title,
         })
             .lean()
             .exec()
-        if (todoTitleUnique) {
+        if (commentTitleUnique) {
             return res.status(409).json({ error: 'Todo title already exist' })
         }
 
@@ -40,7 +40,7 @@ const createTodoController = async (req, res, next) => {
 
 
         /**Propiesdades del objeto */
-const bodyDtoSchema = Joi.object({
+const commentSchema = Joi.object({
     title: Joi.string().required(),
     description: Joi.string().optional(),
     status: Joi.string()
