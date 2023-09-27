@@ -29,17 +29,25 @@ const createCommentController = async (req, res, next) => {
         if (commentTitleUnique) {
             return res.status(409).json({ error: 'Todo title already exist' })
         }
+        
 
+        //Se crea el comentario segun el modelo de datos estipulado 
         await TodoModel.create(bodyDto)
-
+        
+        //Se renderiza en estado correcto y se manda la respuesta
         res.status(201).send()
+
+        //Se captura el error
     } catch (err) {
+        //Hace que pase a la siguiente operación
         next(err)
     }
 }
 
 
-        /**Propiesdades del objeto */
+ /**Propiesdades del objeto
+  * 
+  */
 const commentSchema = Joi.object({
     title: Joi.string().required(),
     description: Joi.string().optional(),
