@@ -3,10 +3,20 @@ const Joi = require('joi')
 const { TodoModel, TODO_ENUM } = require('../../schemas/todo.schema')
 
 /**
+ * Comentario para el autocompletado(req,res,nex)
  * @param {import("express").Request} req
  * @param {import("express").Response} res
  * @param {import("express").NextFunction} next
  */
+
+ /**
+      Siempre debe ser async con sus await(espera de respuesta)
+      (req,res,next)=> petición, respuesta, siguiente
+      bodyDtoSchema: sería el schema que hay que hacer en una consulta CRUD del bodyDto que es este caso sería el endPoint
+      .lean() y .exec(): BUSCAR INFO
+      status: controlar los estados de la petición
+         * 
+         */
 const createTodoController = async (req, res, next) => {
     try {
         const bodyDto = await bodyDtoSchema.validateAsync(req.body)
@@ -28,6 +38,8 @@ const createTodoController = async (req, res, next) => {
     }
 }
 
+
+        /**Propiesdades del objeto */
 const bodyDtoSchema = Joi.object({
     title: Joi.string().required(),
     description: Joi.string().optional(),

@@ -7,6 +7,13 @@ const { TodoModel } = require('../../schemas/todo.schema')
  * @param {import("express").Response} res
  * @param {import("express").NextFunction} next
  */
+
+//Aqui se crea el controlador que controla el borrado de los comentarios que haya registrados
+
+/**
+ * IMPORTANTE: las consultas CRUD siempre llevan schema y model del endpoint que se vaya hacer
+ * la forma más correcta es hacerlo async 
+ */
 const deleteTodoController = async (req, res, next) => {
     try {
         const { id } = await paramsDtoSchema.validateAsync(req.params)
@@ -25,6 +32,7 @@ const deleteTodoController = async (req, res, next) => {
 }
 
 const paramsDtoSchema = Joi.object({
+    //Propiedades del endpoint que estemos creando 
     id: Joi.string().required(),
 })
 
