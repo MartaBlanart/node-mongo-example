@@ -1,3 +1,5 @@
+
+//Se crea el objeto
 const Joi = require('joi')
 
 const { TodoModel, TODO_ENUM } = require('../../schemas/todo.schema')
